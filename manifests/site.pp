@@ -48,6 +48,17 @@ node 'abrader.puppetlabs.vm' {
   include memcached
   
   include nginx
+
+  # Lab 14.1 begin  
+  user { 'admin':
+    ensure => present,
+  }
+
+  class { 'aliases':
+    admin   => 'admin',
+    require => User['admin'],
+  }
+  # Lab 14.1 end
   
   if $::virtual {
     $vmname = capitalize($::virtual)
