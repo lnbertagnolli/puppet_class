@@ -48,6 +48,12 @@ node 'abrader.puppetlabs.vm' {
   include memcached
   
   include nginx
+  
+  if $::virtual != 'phyiscal' {
+    $vmname = capitalize($::virtual)
+    
+    notify { "This is a ${vmname} virtual machine/container" : }
+  }
 
   host { 'testing':
     ensure => present,
