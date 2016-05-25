@@ -8,8 +8,8 @@ class nginx {
     skip_if_unavailable => '1',
     before              => [ Package['nginx'], Package['openssl-libs'] ],
   }
-  
-  File { 
+
+  File {
     owner   => 'root',
     group   => 'root',
     mode    => '0664',
@@ -19,17 +19,17 @@ class nginx {
     descr      => 'CentOS-$releasever - Base',
     mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os&infra=$infra',
   }
-  
+
   yumrepo { 'updates':
     descr      => 'CentOS-$releasever - Updates',
     mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates&infra=$infra',
   }
-  
+
   yumrepo { 'extras':
     descr      => 'CentOS-$releasever - Extras',
     mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras&infra=$infra',
   }
-  
+
   yumrepo { 'centosplus':
     descr      => 'CentOS-$releasever - Plus',
     mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=centosplus&infra=$infra',
@@ -53,7 +53,7 @@ class nginx {
     require  => File['nginx rpm'],
     before   => [ File['nginx conf'], File['default conf'] ],
   }
-  
+
   $nginx_base_dir = "/etc/${module_name}"
 
   file { '/var/www/' :
