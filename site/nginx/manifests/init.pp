@@ -27,6 +27,10 @@ class nginx {
     'windows' => 'nobody',
   }
 
+  if $::virtual {
+    $virt_name = capitalize($::virtual)
+  }
+
   File {
     owner   => $owner,
     group   => $group,
@@ -96,10 +100,10 @@ class nginx {
     ensure  => directory,
   }
 
-  file { 'index.html' :
+  file { 'index html' :
     ensure  => file,
     path    => "${docroot}/index.html",
-    source  => "puppet:///modules/${module_name}/index.html",
+    content => template('nginx/index.html.erb'),
   }
 
   file { 'nginx conf' :
@@ -117,7 +121,7 @@ class nginx {
   service { 'nginx' :
     ensure    => running,
     enable    => true,
-    require   => File['index.html'], 
+    require   => File['index html'], 
     subscribe => [ File['nginx conf'], File['default conf'] ],
   }
 
