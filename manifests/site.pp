@@ -60,6 +60,10 @@ node 'abrader.puppetlabs.vm' {
   }
   # Lab 14.1 end
   
+  # Lab 15.1 begin
+  include users::admins
+  # Lab 15.1 end
+  
   if $::virtual {
     $vmname = capitalize($::virtual)
     
