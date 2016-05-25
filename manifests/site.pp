@@ -49,7 +49,7 @@ node 'abrader.puppetlabs.vm' {
   
   include nginx
   
-  if $::virtual != 'phyiscal' {
+  if $::virtual {
     $vmname = capitalize($::virtual)
     
     notify { "This is a ${vmname} virtual machine/container" : }
