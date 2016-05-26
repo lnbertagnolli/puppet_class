@@ -48,9 +48,7 @@ node 'abrader.puppetlabs.vm' {
   include memcached
 
   # Lab 18.1 begin
-  class { 'nginx' :
-    root => '/var/vvv',
-  }
+  include nginx
   # Lab 18.1 end
 
   # Lab 14.1 begin  
