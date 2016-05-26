@@ -15,7 +15,7 @@ class profile::apache {
     ensure => directory,
   }
 
-  apache::vhost { $::fqdn :
+  apache::vhost { "${blog_name}.puppetlabs.vm" :
     port    => '80',
     docroot => $wp_home,
     require => File[$wp_home],
