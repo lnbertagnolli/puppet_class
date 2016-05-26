@@ -1,9 +1,10 @@
 class profile::apache {
   $wp_home = '/opt/wordpress'
+  $blog_name = 'blog'
 
-  host { $::fqdn :
+  host { "${blog_name}.puppetlabs.vm" :
     ensure       => present,
-    host_aliases => [$::hostname],
+    host_aliases => [$blog_name],
     ip           => $::ipaddress,
   }
 
