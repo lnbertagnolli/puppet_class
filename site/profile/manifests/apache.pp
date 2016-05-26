@@ -3,17 +3,17 @@ class profile::apache {
 
   host { $::fqdn :
     ensure       => present,
-    host_aliases => $::hostname,
+    host_aliases => [$::hostname],
     ip           => $::ipaddress,
   }
-  
+
   include ::apache
   include ::apache::mod::php
-  
+
   file { $wp_home :
     ensure => directory,
   }
-  
+
   apache::vhost { $::fqdn :
     port    => '80',
     docroot => $wp_home,
