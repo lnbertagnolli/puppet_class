@@ -50,6 +50,10 @@ node 'abrader.puppetlabs.vm' {
   # Lab 18.1 begin
   include nginx
   # Lab 18.1 end
+  
+  # Lab 19.1 begin
+  include wrappers::limits
+  # Lab 19.1 end
 
   # Lab 14.1 begin  
   user { 'admin':
