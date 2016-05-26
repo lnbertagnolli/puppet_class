@@ -21,11 +21,6 @@ class nginx::params {
     }
   }
   
-  $docroot = $root ? {
-    undef   => $default_docroot,
-    default => $root,
-  }
-
   $runas_user = $::osfamily ? {
     'redhat'  => 'nginx',
     'debian'  => 'www-data',
