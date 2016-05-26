@@ -1,5 +1,5 @@
 class profile::mysql {
-  # class { '::mysql' :
-  #   php => >
-  # }
+  class { '::mysql::server':
+    root_password => 'strongpassword',
+  }
 }
