@@ -19,5 +19,4 @@ class profile::apache {
     docroot => $wp_home,
     require => File[$wp_home],
   }
-  
 }
