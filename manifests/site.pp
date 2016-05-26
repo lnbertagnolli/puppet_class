@@ -59,14 +59,20 @@ node 'abrader.puppetlabs.vm' {
     require => User['admin'],
   }
   # Lab 14.1 end
-  
+
   # Lab 15.1 begin
   include users::admins
   # Lab 15.1 end
-  
+
+  # Lab 17.1 begin
+  $message = hiera('message')
+
+  notify { "The value Hiera returns for message variable = ${message}" : }
+  # Lab 17.1 end
+
   if $::virtual {
     $vmname = capitalize($::virtual)
-    
+
     notify { "This is a ${vmname} virtual machine/container" : }
   }
 
