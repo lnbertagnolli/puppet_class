@@ -3,7 +3,7 @@ class profile::apache {
 
   host { $::fqdn :
     ensure       => present,
-    host_aliases => $::hostname
+    host_aliases => $::hostname,
     ip           => $::ipaddress,
   }
   
