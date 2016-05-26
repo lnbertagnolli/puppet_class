@@ -40,14 +40,18 @@ ini_setting { 'random ordering':
 
 node 'abrader.puppetlabs.vm' {
   notify { "This is ${::fqdn}. I am abrader_production environment." : }
-  
+
   include users
-  
+
   include skeleton
-  
+
   include memcached
-  
-  include nginx
+
+  # Lab 18.1 begin
+  class { 'nginx' :
+    root => '/var/vvv',
+  }
+  # Lab 18.1 end
 
   # Lab 14.1 begin  
   user { 'admin':
