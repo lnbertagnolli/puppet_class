@@ -76,14 +76,16 @@ class nginx (
     }
   }
 
-  file { $docroot :
-    ensure  => directory,
+  exec { "mkdir -p ${docroot}" :
+    path    => '/bin',
+    creates => $docroot,
   }
 
   file { 'index html' :
     ensure  => file,
     path    => "${docroot}/index.html",
     content => template('nginx/index.html.erb'),
+    require => Exec["mkdir -p ${docroot}"],
   }
 
   file { 'nginx conf' :
